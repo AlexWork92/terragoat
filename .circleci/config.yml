@@ -28,7 +28,7 @@ jobs:
       - checkout
       - checkov/install
       - checkov/scan:
-          file: README.md
+          repo-id: AlexWork92/terragoat
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
