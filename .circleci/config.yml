@@ -27,8 +27,7 @@ workflows:
   checkov-install-and-scan:
     jobs:
       - checkov/run_checkov:
-          directory: ./terraform
-          repo-id: AlexWork92/terragoat
+          file: README.md
 #  say-hello-workflow:
 #    jobs:
 #      - say-hello
