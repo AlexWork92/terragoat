@@ -3,8 +3,8 @@
 version: 2.1
 
 # adding the checkov orb reference 20/08/22
-#orbs: 
-#  checkov: bridgecrew/checkov@0.0.4
+orbs: 
+  checkov: bridgecrew/checkov@0.0.4
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -17,18 +17,26 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-#      - checkout
-      - run: |
-          name: The First Step
+      - checkout
+      - run:
           command: |
             ls -al
             echo '^^^The files in your repo^^^'
+  run-checkov-scan:
+    executor: checkov/default
+    steps:
+      - checkout
+      - checkov/install
+      - checkov/scan:
+          directory: .
+          repo-id: AlexWork92/terragoat
+          soft-fail: true
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
     say-hello-workflow:
       jobs:
-        - check-ls
+        - run-checkov-scan
 #  checkov-install-and-scan:
 #    jobs:
 #      - checkov/run_checkov:
