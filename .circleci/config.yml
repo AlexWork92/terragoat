@@ -2,6 +2,10 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+# adding the checkov orb reference 20/08/22
+orbs: 
+  checkov: bridgecrew/checkov@0.0.4
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -17,10 +21,13 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
-
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  checkov-install-and-scan:
     jobs:
-      - say-hello
+      - checkov/run_checkov:
+          repo-id: AlexWork92/terragoat
+#  say-hello-workflow:
+#    jobs:
+#      - say-hello
