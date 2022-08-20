@@ -3,13 +3,13 @@
 version: 2.1
 
 # adding the checkov orb reference 20/08/22
-orbs: 
-  checkov: bridgecrew/checkov@0.0.4
+#orbs: 
+#  checkov: bridgecrew/checkov@0.0.4
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
+  check-ls:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
@@ -17,17 +17,19 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+#      - checkout
+      - run: |
+          name: The First Step
+          command: |
+            ls -al
+            echo '^^^The files in your repo^^^'
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  checkov-install-and-scan:
-    jobs:
-      - checkov/run_checkov:
-          file: README.md
-#  say-hello-workflow:
+    say-hello-workflow:
+      jobs:
+        - check-ls
+#  checkov-install-and-scan:
 #    jobs:
-#      - say-hello
+#      - checkov/run_checkov:
+#          file: README.md
