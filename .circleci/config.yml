@@ -30,6 +30,7 @@ jobs:
       - checkov/scan:
           directory: .
           repo-id: AlexWork92/terragoat
+          soft-fail: true
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
