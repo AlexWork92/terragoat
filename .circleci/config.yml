@@ -17,9 +17,8 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
-      - checkout
-      - run: |
-          name: The First Step
+  #    - checkout
+      - run:
           command: |
             ls -al
             echo '^^^The files in your repo^^^'
